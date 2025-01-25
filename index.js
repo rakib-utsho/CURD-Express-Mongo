@@ -74,7 +74,14 @@ app.put("/chats/:id", async(req, res)=>{
     let updateChat = await Chat.findByIdAndUpdate(id, {message: newMsg}, {runValidators: true, new: true});
     console.log(updateChat);
     res.redirect("/chats");
-})
+});
+// Destroy Route
+app.delete("/chats/:id", async(req, res)=>{
+let {id} = req.params;
+let chatDelete = await Chat.findByIdAndDelete(id);
+console.log(chatDelete);
+res.redirect("/chats");
+});
 
 // root route
 app.get("/", (req, res)=>{
